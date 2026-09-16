@@ -4,6 +4,19 @@ import allure
 BASE_URL = 'https://shop.qaautomationlabs.com/'
 
 
+def allure_metadata(title, description, feature, testcase_url, testcase_name, suite, severity):
+    def decorator(test_function):
+        decorated_function = allure.title(title)(test_function)
+        decorated_function = allure.description(description)(decorated_function)
+        decorated_function = allure.feature(feature)(decorated_function)
+        decorated_function = allure.testcase(testcase_url, name=testcase_name)(decorated_function)
+        decorated_function = allure.suite(suite)(decorated_function)
+        decorated_function = allure.severity(severity)(decorated_function)
+        return decorated_function
+
+    return decorator
+
+
 @pytest.fixture
 def chrome():
     with sync_playwright() as p:
