@@ -15,26 +15,30 @@ class LoginPage:
     def enter_password(self, password):
         with allure.step(f"Enter password: {password}"):
             self.page.get_by_test_id(LoginLocators.PASSWORD_INPUT).fill(password)
-            
+
     def check_remember_me(self):
         with allure.step("Check 'Remember Me' checkbox"):
             self.page.get_by_test_id(LoginLocators.REMEMBER_ME_CHECKBOX).check()
-    
+
     def click_login_button(self):
         with allure.step("Click on the login button"):
             self.page.get_by_test_id(LoginLocators.LOGIN_BUTTON).click()
-        
+
     def login(self, email, password):
         with allure.step(f"Login with email: {email} and password: {password}"):
             self.enter_email(email)
             self.enter_password(password)
             self.check_remember_me
             self.click_login_button()
-            
+
     def get_invalid_email_error_message(self):
         with allure.step("Get invalid email error message"):
-            return self.page.get_by_test_id(LoginLocators.INVALID_EMAIL_ERROR).inner_text()
-        
+            return self.page.get_by_test_id(
+                LoginLocators.INVALID_EMAIL_ERROR
+            ).inner_text()
+
     def get_invalid_password_error_message(self):
         with allure.step("Get invalid password error message"):
-            return self.page.get_by_test_id(LoginLocators.INVALID_EMAIL_OR_PASSWORD_ERROR).inner_text()
+            return self.page.get_by_test_id(
+                LoginLocators.INVALID_EMAIL_OR_PASSWORD_ERROR
+            ).inner_text()
