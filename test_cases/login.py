@@ -4,7 +4,7 @@ import allure
 
 from pages.login_page import LoginPage
 from pages.dashboard_page import DashboardPage
-from conftest import allure_metadata
+from conftest import BASE_URL, allure_metadata
 
 @allure_metadata(
     title="Valid login with valid credentials.",
@@ -12,13 +12,13 @@ from conftest import allure_metadata
     feature="Login",
     testcase_url="https://shop.qaautomationlabs.com/",
     testcase_name="TC-01-001",
-    suite="Login/",
+    suite="Login",
     severity=allure.severity_level.CRITICAL,
 )
-def test_valid_login(page):
-    login_page = LoginPage(page)
-    dashboard_page = DashboardPage(page)
-    page.goto("https://shop.qaautomationlabs.com/login")
+def test_valid_login(chrome):
+    login_page = LoginPage(chrome)
+    dashboard_page = DashboardPage(chrome)
+    chrome.goto(BASE_URL)
     
     
     

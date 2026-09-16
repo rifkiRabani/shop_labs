@@ -1,6 +1,7 @@
 from playwright.sync_api import sync_playwright
 import pytest
 import allure
+from pathlib import Path
 BASE_URL = 'https://shop.qaautomationlabs.com/'
 
 
@@ -28,6 +29,7 @@ def chrome():
         yield page
        
         with allure.step('Then User Close the browser'):
-            ss = page.screenshot(path='test_evidence/imgs/test.png')
+            evidence_path = Path(__file__).parent / 'test_evidence' / 'imgs' / 'test.png'
+            ss = page.screenshot(path=str(evidence_path))
             allure.attach(ss, name='SS001', attachment_type=allure.attachment_type.PNG)
             browser.close()
