@@ -18,17 +18,18 @@ class LoginPage:
 
     def check_remember_me(self):
         with allure.step("Check 'Remember Me' checkbox"):
-            self.page.get_by_test_id(LoginLocators.REMEMBER_ME_CHECKBOX).check()
+            self.page.get_by_test_id(LoginLocators.CHECKBOX_REMEMBER_ME).check()
 
     def click_login_button(self):
         with allure.step("Click on the login button"):
             self.page.get_by_test_id(LoginLocators.LOGIN_BUTTON).click()
+            self.page.wait_for_url("**/shop.php", timeout=15000)
 
     def login(self, email, password):
         with allure.step(f"Login with email: {email} and password: {password}"):
             self.enter_email(email)
             self.enter_password(password)
-            self.check_remember_me
+            self.check_remember_me()
             self.click_login_button()
 
     def get_invalid_email_error_message(self):
