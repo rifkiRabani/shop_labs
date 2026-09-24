@@ -1,1 +1,0 @@
-{"uuid": "b9001720-909d-40b7-9cdd-de088568370d", "befores": [{"name": "pytestbdd_stepdef_then_the dashboard should be open", "status": "passed", "start": 1790234961176, "stop": 1790234961176}], "afters": [{"name": "pytestbdd_stepdef_then_the dashboard should be open::<lambda>", "start": 1790234961196}], "start": 1790234961176, "stop": 1790234961196}
