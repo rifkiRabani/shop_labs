@@ -1,7 +1,7 @@
 import allure
 from playwright.sync_api import Page
 from playwright.sync_api import expect
-from locators.login_loc import LoginLocators
+from shop_labs.pages.login.login_loc import LoginLocators
 
 
 class LoginPage:
@@ -23,7 +23,6 @@ class LoginPage:
     def click_login_button(self):
         with allure.step("Click on the login button"):
             self.page.get_by_test_id(LoginLocators.LOGIN_BUTTON).click()
-            self.page.wait_for_url("**/shop.php", timeout=15000)
 
     def login(self, email, password):
         with allure.step(f"Login with email: {email} and password: {password}"):
@@ -31,6 +30,7 @@ class LoginPage:
             self.enter_password(password)
             self.check_remember_me()
             self.click_login_button()
+            self.page.wait_for_url("**/shop.php", timeout=15000)
 
     def get_invalid_email_error_message(self):
         with allure.step("Get invalid email error message"):
